@@ -24,6 +24,16 @@ npm run build                # compilación de producción en build/
 La API mock está activa por defecto, también en producción. Para desactivarla al compilar,
 define `REACT_APP_USE_MOCKS=false` (ver `.env.example`).
 
+## API mock y errores simulados
+
+Los destinos se sirven desde una API REST mock (`GET /api/destinations` y `GET /api/destinations/:slug`).
+En desarrollo (`npm start`) puedes provocar un error 500:
+
+- Detalle: abre `/destinos/error-500`.
+- Lista: en la consola del navegador ejecuta `localStorage.mockFail = 'destinations'` y recarga; para quitarlo, `localStorage.removeItem('mockFail')`.
+
+En el sitio publicado estos mecanismos están desactivados: `/destinos/error-500` se trata como un destino inexistente.
+
 ## Publicación
 
 https://gustavoduocuc.github.io/viajes-gustavo-dominguez-pfy2202
