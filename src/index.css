@@ -3,28 +3,34 @@
 @tailwind utilities;
 
 :root {
-  --color-background: #f7f1e5;
-  --color-surface: #fffaf0;
-  --color-text: #2a1f17;
-  --color-muted: #5f5143;
-  --color-accent: #24473a;
-  --color-accent-strong: #1a352b;
-  --color-accent-soft: #e4ede7;
-  --color-highlight: #9a4a06;
+  --color-background: #f1f7f9;
+  --color-surface: #ffffff;
+  --color-text: #12262e;
+  --color-muted: #475d66;
+  --color-accent: #0b5f7a;
+  --color-accent-strong: #084559;
+  --color-accent-soft: #dcf0f6;
+  --color-highlight: #c2410c;
   --color-danger: #b42318;
   --color-danger-soft: #fdecea;
-  --color-line: #e3d8c3;
-  --color-field: #8a7b66;
+  --color-line: #d3e1e6;
+  --color-field: #62808c;
 
+  --gradient-region-sudamerica: linear-gradient(135deg, #0b5f7a 0%, #2f9e8f 55%, #e9b44c 100%);
+  --gradient-region-caribe: linear-gradient(135deg, #0891b2 0%, #5eead4 60%, #fde68a 100%);
+  --gradient-region-europa: linear-gradient(135deg, #1e3a8a 0%, #6366f1 55%, #f9a8d4 100%);
+  --gradient-region-asia: linear-gradient(135deg, #9f1239 0%, #f43f5e 55%, #fecdd3 100%);
+  --gradient-region-africa: linear-gradient(135deg, #7c2d12 0%, #ea580c 55%, #fcd34d 100%);
+  --gradient-region-neutral: linear-gradient(135deg, #475d66 0%, #94a3b8 100%);
 
   --radius-card: 1rem;
   --radius-control: 0.625rem;
   --radius-pill: 9999px;
 
-  --shadow-card: 0 1px 2px rgb(42 31 23 / 0.06), 0 1px 3px rgb(42 31 23 / 0.04);
-  --shadow-header: 0 1px 0 var(--color-line), 0 2px 8px rgb(42 31 23 / 0.06);
-  --shadow-menu: 0 -2px 8px rgb(42 31 23 / 0.08);
-  --shadow-sticky: 1px 0 0 var(--color-line), 6px 0 8px -4px rgb(42 31 23 / 0.14);
+  --shadow-card: 0 1px 2px rgb(18 38 46 / 0.06), 0 1px 3px rgb(18 38 46 / 0.04);
+  --shadow-header: 0 1px 0 var(--color-line), 0 2px 8px rgb(18 38 46 / 0.06);
+  --shadow-menu: 0 -2px 8px rgb(18 38 46 / 0.08);
+  --shadow-sticky: 1px 0 0 var(--color-line), 6px 0 8px -4px rgb(18 38 46 / 0.14);
 
   --size-page: 72rem;
   --size-form: 36rem;
