@@ -23,3 +23,10 @@ test('loading is announced as status without a back link', () => {
   expect(screen.getByRole('status')).toHaveTextContent('Cargando…');
   expect(screen.queryByRole('link')).not.toBeInTheDocument();
 });
+
+test('an empty message is a status with its back link', () => {
+  renderMessage({ kind: 'empty', message: 'No hay destinos disponibles.', backTo: '/', backLabel: 'Volver a Inicio' });
+
+  expect(screen.getByRole('status')).toHaveTextContent('No hay destinos disponibles.');
+  expect(screen.getByRole('link', { name: 'Volver a Inicio' })).toBeInTheDocument();
+});
