@@ -1,11 +1,8 @@
 import { formatPrice } from '../../offers/formatPrice';
 import { Card } from '../../ui/Card/Card';
+import { formatNights } from '../formatNights';
 import { calculateTripTotal } from '../tripCalculations';
 import { partHeadingClass } from '../TripPartCard/TripPartCard';
-
-function nightsLabel(nights) {
-  return nights === 1 ? '1 noche' : `${nights} noches`;
-}
 
 function Row(props) {
   return (
@@ -35,7 +32,7 @@ export function TripTotal(props) {
           {trip.flight && <Row label="Vuelo" value={formatPrice(summary.flightAmount, trip.flight.currency)} />}
           {trip.hotel && (
             <Row
-              label={`Hotel ${nightsLabel(summary.nights)} × ${formatPrice(trip.hotel.pricePerNight, trip.hotel.currency)}`}
+              label={`Hotel ${formatNights(summary.nights)} × ${formatPrice(trip.hotel.pricePerNight, trip.hotel.currency)}`}
               value={formatPrice(summary.hotelAmount, trip.hotel.currency)}
             />
           )}

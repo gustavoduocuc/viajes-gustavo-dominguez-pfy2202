@@ -5,15 +5,12 @@ import { StarRating } from '../../offers/StarRating/StarRating';
 import { Button } from '../../ui/Button/Button';
 import { EmptyState } from '../../ui/EmptyState/EmptyState';
 import { TextLink } from '../../ui/TextLink/TextLink';
+import { formatNights } from '../formatNights';
 import { calculateNights } from '../tripCalculations';
 import { countTripItems, isTripEmpty } from '../tripState';
 import { useTrip } from '../TripProvider/TripProvider';
 import { TripPartCard } from '../TripPartCard/TripPartCard';
 import { TripTotal } from '../TripTotal/TripTotal';
-
-function nightsLabel(nights) {
-  return nights === 1 ? '1 noche' : `${nights} noches`;
-}
 
 function PartActions(props) {
   return (
@@ -58,7 +55,7 @@ function HotelPart(props) {
         <p className="text-sm text-muted">{hotel.address}</p>
       </div>
       <DateRange start={hotel.checkIn} end={hotel.checkOut} startLabel="Entrada" endLabel="Salida" />
-      <p className="text-base font-semibold">{nightsLabel(calculateNights(hotel.checkIn, hotel.checkOut))}</p>
+      <p className="text-base font-semibold">{formatNights(calculateNights(hotel.checkIn, hotel.checkOut))}</p>
       <PriceTag amount={hotel.pricePerNight} currency={hotel.currency} suffix="por noche" />
       <PartActions
         changeLabel="Cambiar hotel"

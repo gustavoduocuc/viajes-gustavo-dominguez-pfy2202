@@ -27,13 +27,13 @@ export function TripProvider(props) {
     [trip]
   );
 
-  function chooseOffer(destination, transition) {
+  function chooseOffer(destination, nextTrip) {
     setNotice(
       replacesTrip(trip, destination.slug)
         ? { previousName: trip.destination.name, newName: destination.name }
         : null
     );
-    setTrip(transition);
+    setTrip(nextTrip);
   }
 
   function chooseFlightOffer(destination, flight) {
