@@ -17,6 +17,14 @@ module.exports = {
         field: 'var(--color-field)',
         highlight: 'var(--color-highlight)',
       },
+      backgroundImage: {
+        'region-sudamerica': 'var(--gradient-region-sudamerica)',
+        'region-caribe': 'var(--gradient-region-caribe)',
+        'region-europa': 'var(--gradient-region-europa)',
+        'region-asia': 'var(--gradient-region-asia)',
+        'region-africa': 'var(--gradient-region-africa)',
+        'region-neutral': 'var(--gradient-region-neutral)',
+      },
       borderColor: {
         DEFAULT: 'var(--color-line)',
       },

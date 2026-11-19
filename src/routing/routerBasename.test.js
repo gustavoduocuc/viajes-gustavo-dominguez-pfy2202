@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { createMemoryRouter, RouterProvider } from 'react-router';
+import { mockDestinationsApi } from '../testing/mockDestinationsApi';
 import { routes } from './routes';
 import { getRouterBasename } from './routerBasename';
 
@@ -16,6 +17,7 @@ test('a public url becomes the router base without a trailing slash', () => {
 });
 
 function renderPublished(path) {
+  mockDestinationsApi();
   const router = createMemoryRouter(routes, {
     basename: publishedBase,
     initialEntries: [`${publishedBase}${path}`],
@@ -45,4 +47,11 @@ test('an unknown address under the base shows the app notice', async () => {
     'href',
     publishedBase
   );
+});
+
+test('a deep link under the base opens that destination', async () => {
+  renderPublished('/destinos/kioto');
+
+  expect(await screen.findByRole('heading', { level: 1, name: 'Kioto' })).toBeInTheDocument();
+  expect(screen.getByRole('link', { name: 'Destinos' })).toHaveAttribute('href', `${publishedBase}/destinos`);
 });

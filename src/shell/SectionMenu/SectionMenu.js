@@ -21,6 +21,9 @@ export function SectionMenu() {
       <NavLink className={sectionLinkClass} to="/" end>
         Inicio
       </NavLink>
+      <NavLink className={sectionLinkClass} to="/destinos">
+        Destinos
+      </NavLink>
     </nav>
   );
 }
