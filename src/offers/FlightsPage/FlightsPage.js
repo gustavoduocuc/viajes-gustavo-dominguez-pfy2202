@@ -1,7 +1,8 @@
 import { useQuery } from '@apollo/client/react';
 import { useState } from 'react';
-import { useParams } from 'react-router';
+import { useOutletContext, useParams } from 'react-router';
 import { getFlights } from '../../graphql/queries';
+import { useTrip } from '../../trip/TripProvider/TripProvider';
 import { StatusMessage } from '../../ui/StatusMessage/StatusMessage';
 import { FlightCard } from '../FlightCard/FlightCard';
 import { OffersFilters } from '../OffersFilters/OffersFilters';
@@ -35,7 +36,11 @@ function FlightsContent(props) {
       <ul className={offersGridClass}>
         {flights.map((flight) => (
           <li key={flight.id}>
-            <FlightCard flight={flight} />
+            <FlightCard
+              flight={flight}
+              isChosen={props.trip.trip.flight?.id === flight.id}
+              onChoose={() => props.trip.chooseFlight(props.destination, flight)}
+            />
           </li>
         ))}
       </ul>
@@ -45,6 +50,8 @@ function FlightsContent(props) {
 
 export function FlightsPage() {
   const params = useParams();
+  const destination = useOutletContext();
+  const trip = useTrip();
   const [departureDate, setDepartureDate] = useState('');
   const query = useQuery(getFlights, {
     variables: { destination: params.slug, date: departureDate || undefined },
@@ -54,7 +61,7 @@ export function FlightsPage() {
     <section className="flex flex-col gap-4">
       <h2 className="font-serif text-xl font-bold">Vuelos</h2>
       <OffersFilters departureDate={departureDate} onDepartureDateChange={setDepartureDate} />
-      <FlightsContent hasFilter={departureDate !== ''} query={query} />
+      <FlightsContent destination={destination} hasFilter={departureDate !== ''} query={query} trip={trip} />
     </section>
   );
 }

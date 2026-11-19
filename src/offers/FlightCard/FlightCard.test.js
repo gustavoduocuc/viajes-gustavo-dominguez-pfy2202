@@ -35,3 +35,22 @@ test('a sold out flight is marked disabled and says so with text', () => {
   expect(container.querySelector('article')).toHaveAttribute('aria-disabled', 'true');
   expect(screen.getByText('Agotado')).toBeInTheDocument();
 });
+
+test('an available flight offers a choose button named after the airline', () => {
+  render(<FlightCard flight={flight} onChoose={() => {}} />);
+
+  expect(screen.getByRole('button', { name: 'Elegir vuelo LATAM' })).toBeEnabled();
+});
+
+test('a sold out flight has its choose button disabled', () => {
+  render(<FlightCard flight={{ ...flight, seatsAvailable: 0 }} onChoose={() => {}} />);
+
+  expect(screen.getByRole('button', { name: 'Elegir vuelo LATAM' })).toBeDisabled();
+});
+
+test('the chosen flight says Elegido instead of offering the button', () => {
+  render(<FlightCard flight={flight} isChosen onChoose={() => {}} />);
+
+  expect(screen.getByText('Elegido')).toBeInTheDocument();
+  expect(screen.queryByRole('button')).not.toBeInTheDocument();
+});

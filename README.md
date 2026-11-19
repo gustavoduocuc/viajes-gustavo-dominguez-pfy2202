@@ -1,7 +1,7 @@
 # Agencia de viajes
 
 Aplicación web de una agencia de viajes para la asignatura PFY2202 (Desarrollo Frontend II).
-Permite explorar destinos y ver sus vuelos y hoteles, con datos de APIs mock.
+Permite explorar destinos, ver sus vuelos y hoteles, elegir uno de cada y revisar el viaje con su total estimado, con datos de APIs mock.
 
 ## Stack
 
@@ -35,6 +35,16 @@ En desarrollo (`npm start`) puedes provocar un error 500:
 Para los vuelos y hoteles (GraphQL), en la consola del navegador ejecuta `localStorage.mockFail = 'graphql'` y recarga cualquier sección de un destino (por ejemplo `/destinos/cusco/vuelos`); la respuesta trae un error y la pantalla lo muestra. Quítalo con `localStorage.removeItem('mockFail')`. La clave `mockFail` admite un valor a la vez (`destinations` o `graphql`).
 
 En el sitio publicado estos mecanismos están desactivados: `/destinos/error-500` se trata como un destino inexistente.
+
+## Mi viaje
+
+Desde las listas de vuelos y hoteles de un destino puedes elegir una oferta (las agotadas no se pueden elegir).
+El viaje, con a lo más un vuelo y un hotel de un mismo destino, se ve en `/mi-viaje`: ahí aparecen las noches,
+el total estimado (para 1 pasajero y 1 habitación) y las acciones para cambiar o quitar cada parte.
+Si eliges una oferta de otro destino, el viaje anterior se reemplaza y se muestra un aviso.
+
+El viaje se guarda en el navegador (`localStorage`, clave `viajes.trip`) y se conserva al refrescar.
+Para empezar de cero usa «Vaciar viaje» o, en la consola del navegador, `localStorage.removeItem('viajes.trip')`.
 
 ## REST vs GraphQL
 

@@ -5,6 +5,7 @@ import { DestinationsPage } from '../destinations/DestinationsPage/DestinationsP
 import { FlightsPage } from '../offers/FlightsPage/FlightsPage';
 import { HotelsPage } from '../offers/HotelsPage/HotelsPage';
 import { HomePage } from '../home/HomePage/HomePage';
+import { TripPage } from '../trip/TripPage/TripPage';
 import { AppShell } from '../shell/AppShell/AppShell';
 import { NotFoundPage } from './NotFoundPage/NotFoundPage';
 import { getRouterBasename } from './routerBasename';
@@ -30,6 +31,7 @@ export const routes = [
           { path: 'hoteles', Component: HotelsPage },
         ],
       },
+      { path: 'mi-viaje', Component: TripPage },
       { path: '*', Component: NotFoundPage },
     ],
   },

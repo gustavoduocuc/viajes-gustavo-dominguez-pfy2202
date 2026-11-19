@@ -42,3 +42,22 @@ test('a sold out hotel is marked disabled and says so with text', () => {
   expect(container.querySelector('article')).toHaveAttribute('aria-disabled', 'true');
   expect(screen.getByText('Agotado')).toBeInTheDocument();
 });
+
+test('an available hotel offers a choose button named after the hotel', () => {
+  render(<HotelCard hotel={hotel} onChoose={() => {}} />);
+
+  expect(screen.getByRole('button', { name: 'Elegir hotel Hotel Trastevere' })).toBeEnabled();
+});
+
+test('a sold out hotel has its choose button disabled', () => {
+  render(<HotelCard hotel={{ ...hotel, roomsAvailable: 0 }} onChoose={() => {}} />);
+
+  expect(screen.getByRole('button', { name: 'Elegir hotel Hotel Trastevere' })).toBeDisabled();
+});
+
+test('the chosen hotel says Elegido instead of offering the button', () => {
+  render(<HotelCard hotel={hotel} isChosen onChoose={() => {}} />);
+
+  expect(screen.getByText('Elegido')).toBeInTheDocument();
+  expect(screen.queryByRole('button')).not.toBeInTheDocument();
+});
