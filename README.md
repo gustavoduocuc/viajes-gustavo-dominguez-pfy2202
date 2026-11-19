@@ -178,6 +178,9 @@ El detalle está en [docs/testing-evidence.md](docs/testing-evidence.md).
 |---|---|
 | ![Destinos](docs/screenshots/chromium-desktop-destinos.jpg) | ![Mi viaje](docs/screenshots/chromium-desktop-mi-viaje.jpg) |
 | ![Destinos en móvil](docs/screenshots/mobile-webkit-destinos.jpg) | ![Mi viaje en móvil](docs/screenshots/mobile-webkit-mi-viaje.jpg) |
+| ![Destinos publicado](docs/screenshots/publicado-destinos.jpg) | ![Mi viaje publicado](docs/screenshots/publicado-mi-viaje.jpg) |
+
+La última fila muestra el sitio publicado.
 
 ## Publicación
 
