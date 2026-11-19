@@ -1,5 +1,6 @@
 import { screen } from '@testing-library/react';
 import { mockDestinationsApi, neverResolves } from '../../testing/mockDestinationsApi';
+import { offersMock } from '../../testing/offersMocks';
 import { renderAt } from '../../testing/renderAt';
 
 function expectOneMainHeading() {
@@ -8,7 +9,7 @@ function expectOneMainHeading() {
 
 test('an existing destination shows name, country, description and activities', async () => {
   mockDestinationsApi();
-  renderAt('/destinos/kioto');
+  renderAt('/destinos/kioto', { mocks: [offersMock('kioto')] });
 
   expect(await screen.findByRole('heading', { level: 1, name: 'Kioto' })).toBeInTheDocument();
   expect(screen.getByText('Japón')).toBeInTheDocument();
