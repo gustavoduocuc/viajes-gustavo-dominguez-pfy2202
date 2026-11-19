@@ -1,6 +1,8 @@
+import { MockedProvider } from '@apollo/client/testing/react';
 import { render, screen } from '@testing-library/react';
 import { createMemoryRouter, RouterProvider } from 'react-router';
 import { mockDestinationsApi } from '../testing/mockDestinationsApi';
+import { hotelsMock, offersMock } from '../testing/offersMocks';
 import { routes } from './routes';
 import { getRouterBasename } from './routerBasename';
 
@@ -16,13 +18,17 @@ test('a public url becomes the router base without a trailing slash', () => {
   expect(getRouterBasename(`${publishedBase}/`)).toBe(publishedBase);
 });
 
-function renderPublished(path) {
+function renderPublished(path, mocks = [offersMock('kioto')]) {
   mockDestinationsApi();
   const router = createMemoryRouter(routes, {
     basename: publishedBase,
     initialEntries: [`${publishedBase}${path}`],
   });
-  render(<RouterProvider router={router} />);
+  render(
+    <MockedProvider mocks={mocks}>
+      <RouterProvider router={router} />
+    </MockedProvider>
+  );
 }
 
 test('the root address under the base opens home', async () => {
@@ -54,4 +60,14 @@ test('a deep link under the base opens that destination', async () => {
 
   expect(await screen.findByRole('heading', { level: 1, name: 'Kioto' })).toBeInTheDocument();
   expect(screen.getByRole('link', { name: 'Destinos' })).toHaveAttribute('href', `${publishedBase}/destinos`);
+});
+
+test('a nested section under the base opens directly', async () => {
+  renderPublished('/destinos/cusco/hoteles', [hotelsMock('cusco')]);
+
+  expect(await screen.findByText('3 hoteles')).toBeInTheDocument();
+  expect(screen.getByRole('link', { name: 'Hoteles' })).toHaveAttribute(
+    'href',
+    `${publishedBase}/destinos/cusco/hoteles`
+  );
 });
