@@ -3,9 +3,11 @@ import { findDestinationBySlug, listDestinationSummaries } from './destinationQu
 // Fallos simulados (solo fuera de producción):
 // - Detalle: abrir /destinos/error-500.
 // - Lista: en la consola del navegador, localStorage.mockFail = 'destinations' (y recargar).
+// - GraphQL (vuelos y hoteles): localStorage.mockFail = 'graphql' (ver offersResponses.js).
 export const simulatedErrorSlug = 'error-500';
 export const failStorageKey = 'mockFail';
 export const failListValue = 'destinations';
+export const failGraphqlValue = 'graphql';
 
 const serverError = { status: 500, body: { message: 'Error simulado del servidor.' } };
 
