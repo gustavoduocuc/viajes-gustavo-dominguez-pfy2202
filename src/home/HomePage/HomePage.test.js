@@ -19,7 +19,7 @@ test('home shows a loading message while waiting', () => {
   mockDestinationsApi({ '/api/destinations': neverResolves });
   renderAt('/');
 
-  expect(screen.getByRole('status')).toHaveTextContent('Cargando destinos destacados…');
+  expect(screen.getByText('Cargando destinos destacados…').closest('[role="status"]')).toBeInTheDocument();
 });
 
 test('home keeps its title and link when the api fails', async () => {

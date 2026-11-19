@@ -24,7 +24,7 @@ test('the detail shows a loading state with a single main heading', () => {
   mockDestinationsApi({ '/api/destinations/kioto': neverResolves });
   renderAt('/destinos/kioto');
 
-  expect(screen.getByRole('status')).toHaveTextContent('Cargando destino…');
+  expect(screen.getByText('Cargando destino…').closest('[role="status"]')).toBeInTheDocument();
   expectOneMainHeading();
 });
 

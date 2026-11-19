@@ -53,6 +53,6 @@ test('an api error is shown as an alert', async () => {
 test('the summary shows a loading message first', async () => {
   await openSummary('cusco', [{ ...offersMock('cusco'), delay: 100 }]);
 
-  expect(screen.getByRole('status')).toHaveTextContent('Cargando ofertas…');
+  expect(screen.getByText('Cargando ofertas…').closest('[role="status"]')).toBeInTheDocument();
   expect(await screen.findByText('3 vuelos')).toBeInTheDocument();
 });
