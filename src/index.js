@@ -1,7 +1,9 @@
 import React from 'react';
+import { ApolloProvider } from '@apollo/client/react';
 import ReactDOM from 'react-dom/client';
 import { RouterProvider } from 'react-router';
 import './index.css';
+import { createApolloClient } from './graphql/client';
 import reportWebVitals from './reportWebVitals';
 import { appRouter } from './routing/routes';
 
@@ -23,9 +25,12 @@ async function enableMocking() {
 
 function renderApp() {
   const root = ReactDOM.createRoot(document.getElementById('root'));
+  const client = createApolloClient();
   root.render(
     <React.StrictMode>
-      <RouterProvider router={appRouter} />
+      <ApolloProvider client={client}>
+        <RouterProvider router={appRouter} />
+      </ApolloProvider>
     </React.StrictMode>
   );
 }
