@@ -1,4 +1,5 @@
 import { useOutletContext } from 'react-router';
+import { DestinationOffersSummary } from '../../offers/DestinationOffersSummary/DestinationOffersSummary';
 import { ActivityList } from '../ActivityList/ActivityList';
 
 export function DestinationOverview() {
@@ -14,6 +15,7 @@ export function DestinationOverview() {
         <h2 className="font-serif text-xl font-bold">Actividades populares</h2>
         <ActivityList activities={destination.popularActivities} />
       </section>
+      <DestinationOffersSummary />
     </div>
   );
 }

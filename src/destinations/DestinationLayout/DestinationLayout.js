@@ -1,4 +1,5 @@
 import { Outlet, useParams } from 'react-router';
+import { DestinationTabs } from '../../offers/DestinationTabs/DestinationTabs';
 import { PageTitle } from '../../ui/PageTitle/PageTitle';
 import { StatusMessage } from '../../ui/StatusMessage/StatusMessage';
 import { TextLink } from '../../ui/TextLink/TextLink';
@@ -29,6 +30,7 @@ function DestinationDetail(props) {
         <PageTitle>{destination.name}</PageTitle>
         <CountryBadge country={destination.country} region={destination.region} />
       </header>
+      <DestinationTabs slug={destination.slug} />
       <Outlet context={destination} />
     </article>
   );

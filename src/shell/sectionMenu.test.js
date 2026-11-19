@@ -1,5 +1,6 @@
 import { screen, within } from '@testing-library/react';
 import { mockDestinationsApi } from '../testing/mockDestinationsApi';
+import { offersMock } from '../testing/offersMocks';
 import { renderAt } from '../testing/renderAt';
 
 async function readMenu() {
@@ -33,7 +34,7 @@ test('only Inicio is marked on the home page', async () => {
 
 test('Destinos stays marked on a destination detail', async () => {
   mockDestinationsApi();
-  renderAt('/destinos/kioto');
+  renderAt('/destinos/kioto', { mocks: [offersMock('kioto')] });
 
   const marked = markedLinks(await readMenu());
 
