@@ -1,6 +1,7 @@
 import { MockedProvider } from '@apollo/client/testing/react';
 import { render, screen } from '@testing-library/react';
 import { createMemoryRouter, RouterProvider } from 'react-router';
+import { storeTrip } from '../testing/tripFixtures';
 import { mockDestinationsApi } from '../testing/mockDestinationsApi';
 import { hotelsMock, offersMock } from '../testing/offersMocks';
 import { routes } from './routes';
@@ -69,5 +70,17 @@ test('a nested section under the base opens directly', async () => {
   expect(screen.getByRole('link', { name: 'Hoteles' })).toHaveAttribute(
     'href',
     `${publishedBase}/destinos/cusco/hoteles`
+  );
+});
+
+test('the trip screen opens directly under the base keeping the stored trip', async () => {
+  storeTrip('cusco', { flightId: 'fl-cusco-01' });
+  renderPublished('/mi-viaje');
+
+  expect(await screen.findByRole('heading', { level: 1, name: 'Mi viaje' })).toBeInTheDocument();
+  expect(screen.getByText('LATAM')).toBeInTheDocument();
+  expect(screen.getByRole('link', { name: 'Cambiar vuelo' })).toHaveAttribute(
+    'href',
+    `${publishedBase}/destinos/cusco/vuelos`
   );
 });
