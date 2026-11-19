@@ -1,7 +1,8 @@
 import { useQuery } from '@apollo/client/react';
 import { useState } from 'react';
-import { useParams } from 'react-router';
+import { useOutletContext, useParams } from 'react-router';
 import { getHotels } from '../../graphql/queries';
+import { useTrip } from '../../trip/TripProvider/TripProvider';
 import { StatusMessage } from '../../ui/StatusMessage/StatusMessage';
 import { HotelCard } from '../HotelCard/HotelCard';
 import { OffersFilters } from '../OffersFilters/OffersFilters';
@@ -35,7 +36,11 @@ function HotelsContent(props) {
       <ul className={offersGridClass}>
         {hotels.map((hotel) => (
           <li key={hotel.id}>
-            <HotelCard hotel={hotel} />
+            <HotelCard
+              hotel={hotel}
+              isChosen={props.trip.trip.hotel?.id === hotel.id}
+              onChoose={() => props.trip.chooseHotel(props.destination, hotel)}
+            />
           </li>
         ))}
       </ul>
@@ -45,6 +50,8 @@ function HotelsContent(props) {
 
 export function HotelsPage() {
   const params = useParams();
+  const destination = useOutletContext();
+  const trip = useTrip();
   const [onlyAvailable, setOnlyAvailable] = useState(false);
   const query = useQuery(getHotels, {
     variables: { destination: params.slug, onlyAvailable: onlyAvailable || undefined },
@@ -54,7 +61,7 @@ export function HotelsPage() {
     <section className="flex flex-col gap-4">
       <h2 className="font-serif text-xl font-bold">Hoteles</h2>
       <OffersFilters onlyAvailable={onlyAvailable} onOnlyAvailableChange={setOnlyAvailable} />
-      <HotelsContent hasFilter={onlyAvailable} query={query} />
+      <HotelsContent destination={destination} hasFilter={onlyAvailable} query={query} trip={trip} />
     </section>
   );
 }
