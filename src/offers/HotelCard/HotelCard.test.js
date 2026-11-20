@@ -37,9 +37,9 @@ test('the amenities are list items', () => {
 });
 
 test('a sold out hotel is marked disabled and says so with text', () => {
-  const { container } = render(<HotelCard hotel={{ ...hotel, roomsAvailable: 0 }} />);
+  render(<HotelCard hotel={{ ...hotel, roomsAvailable: 0 }} />);
 
-  expect(container.querySelector('article')).toHaveAttribute('aria-disabled', 'true');
+  expect(screen.getByRole('article')).toHaveAttribute('aria-disabled', 'true');
   expect(screen.getByText('Agotado')).toBeInTheDocument();
 });
 

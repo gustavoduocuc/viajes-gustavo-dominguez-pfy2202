@@ -1,4 +1,4 @@
-import { screen } from '@testing-library/react';
+import { screen, within } from '@testing-library/react';
 import { mockDestinationsApi, neverResolves } from '../../testing/mockDestinationsApi';
 import { offersMock } from '../../testing/offersMocks';
 import { renderAt } from '../../testing/renderAt';
@@ -24,7 +24,7 @@ test('the detail shows a loading state with a single main heading', () => {
   mockDestinationsApi({ '/api/destinations/kioto': neverResolves });
   renderAt('/destinos/kioto');
 
-  expect(screen.getByText('Cargando destino…').closest('[role="status"]')).toBeInTheDocument();
+  expect(within(screen.getByRole('main')).getByRole('status')).toHaveTextContent('Cargando destino…');
   expectOneMainHeading();
 });
 

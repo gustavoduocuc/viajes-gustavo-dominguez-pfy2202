@@ -35,6 +35,7 @@ export function useRemoteData(load, dependencies) {
     return function cancel() {
       controller.abort();
     };
+    // Las dependencias las define quien llama (por ejemplo, el slug), por eso el lint no puede comprobarlas.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, dependencies);
 

@@ -11,12 +11,11 @@ const destination = {
 };
 
 function renderCard() {
-  const { container } = render(
+  render(
     <MemoryRouter>
       <DestinationCard destination={destination} />
     </MemoryRouter>
   );
-  return container;
 }
 
 test('the name links to the destination detail', () => {
@@ -33,8 +32,8 @@ test('it shows the country and at most three activities', () => {
   expect(screen.getAllByRole('listitem')).toHaveLength(3);
 });
 
-test('the cover is hidden from assistive technology', () => {
-  const container = renderCard();
+test('the decorative cover does not expose an image to assistive technology', () => {
+  renderCard();
 
-  expect(container.querySelector('[aria-hidden="true"]')).toBeInTheDocument();
+  expect(screen.queryByRole('img')).not.toBeInTheDocument();
 });

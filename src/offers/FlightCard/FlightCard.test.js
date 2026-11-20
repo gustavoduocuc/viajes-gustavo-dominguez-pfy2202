@@ -24,15 +24,15 @@ test('it shows airline, origin, dates, price and availability', () => {
 });
 
 test('an available flight is not marked disabled', () => {
-  const { container } = render(<FlightCard flight={flight} />);
+  render(<FlightCard flight={flight} />);
 
-  expect(container.querySelector('[aria-disabled]')).not.toBeInTheDocument();
+  expect(screen.getByRole('article')).not.toHaveAttribute('aria-disabled');
 });
 
 test('a sold out flight is marked disabled and says so with text', () => {
-  const { container } = render(<FlightCard flight={{ ...flight, seatsAvailable: 0 }} />);
+  render(<FlightCard flight={{ ...flight, seatsAvailable: 0 }} />);
 
-  expect(container.querySelector('article')).toHaveAttribute('aria-disabled', 'true');
+  expect(screen.getByRole('article')).toHaveAttribute('aria-disabled', 'true');
   expect(screen.getByText('Agotado')).toBeInTheDocument();
 });
 

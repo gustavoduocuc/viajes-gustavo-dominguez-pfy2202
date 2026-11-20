@@ -31,10 +31,10 @@ test('more units show the available amount', () => {
 
 test('the state is always conveyed by text', () => {
   [0, 2, 20].forEach((units) => {
-    const { container, unmount } = render(
+    const view = render(
       <AvailabilityBadge units={units} singularUnit="habitación" pluralUnit="habitaciones" />
     );
-    expect(container.textContent.trim()).not.toBe('');
-    unmount();
+    expect(screen.getByText(/\S/)).toBeInTheDocument();
+    view.unmount();
   });
 });

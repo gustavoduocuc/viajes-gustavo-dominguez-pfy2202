@@ -74,16 +74,15 @@ export function TripPage() {
   const pageHeadingRef = useRef(null);
   const flightHeadingRef = useRef(null);
   const hotelHeadingRef = useRef(null);
-  const focusTargets = { page: pageHeadingRef, flight: flightHeadingRef, hotel: hotelHeadingRef };
 
   useEffect(
     function moveFocus() {
+      const focusTargets = { page: pageHeadingRef, flight: flightHeadingRef, hotel: hotelHeadingRef };
       if (pendingFocus) {
         focusTargets[pendingFocus].current?.focus();
         setPendingFocus(null);
       }
     },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     [pendingFocus]
   );
 

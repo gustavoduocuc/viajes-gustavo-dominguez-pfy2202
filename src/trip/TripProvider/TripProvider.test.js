@@ -133,9 +133,9 @@ test('removing parts and clearing update the trip', () => {
 });
 
 test('the trip survives remounting with the same storage', () => {
-  const first = renderTrip();
+  const view = renderTrip();
   click('vuelo cusco');
-  first.unmount();
+  view.unmount();
 
   renderTrip();
 
@@ -144,10 +144,10 @@ test('the trip survives remounting with the same storage', () => {
 });
 
 test('the notice does not survive remounting', () => {
-  const first = renderTrip();
+  const view = renderTrip();
   click('vuelo cusco');
   click('hotel roma');
-  first.unmount();
+  view.unmount();
 
   renderTrip();
 

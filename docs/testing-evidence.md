@@ -11,13 +11,13 @@ Fecha: 18 de noviembre de 2026 · Equipo: macOS 27, Apple Silicon · Aplicación
 | Chrome móvil (Pixel 7) | Chromium 153.0.8010.12 | 412×839 | 17/17 | Correcto |
 | Safari móvil (iPhone 13) | WebKit 26.6 | 390×664 | 17/17 | Correcto |
 | Tablet (iPad Mini) | Chromium 153.0.8010.12 | 768×1024 | 17/17 | Correcto |
-| Firefox escritorio | Firefox 155 (build de pruebas) y 160.0.1 instalado | 1440×900 | No ejecutado | **Pendiente: prueba manual** (ver abajo) |
+| Firefox escritorio | Firefox 160.0.1 | ~1390 px | No automatizado en este equipo | Verificado a mano (ver «Prueba manual») |
 
 Total: 85 pruebas pasan en 5 configuraciones.
 
-**Sobre Safari:** se probó el motor WebKit 26.6, el mismo de Safari, pero no la aplicación Safari 27.2 instalada. Confirma con el checklist manual.
+**Sobre Safari:** las pruebas automatizadas usan el motor WebKit 26.6, el mismo de Safari. La aplicación Safari 27.2 se probó además a mano en el sitio publicado (ver «Prueba manual»).
 
-**Sobre Firefox:** en este entorno el navegador no llega a abrirse (el proceso termina con «Could not find profile folder», también con la instalación 160.0.1 y con un perfil propio; el entorno restringe la creación de procesos auxiliares). No es un fallo de la aplicación. La configuración de pruebas ya incluye el proyecto `firefox-desktop` para ejecutarlo en una máquina sin esa restricción.
+**Sobre Firefox:** en el equipo de desarrollo el navegador no se puede controlar desde las pruebas automatizadas (el proceso termina con «Could not find profile folder»; es una limitación del entorno, no de la aplicación). Se probó entonces a mano en el sitio publicado (ver «Prueba manual»).
 
 ## Flujos verificados
 
@@ -62,6 +62,26 @@ Carpeta [screenshots](screenshots/). Nombre: `<navegador>-<pantalla>.jpg`.
 | Estado vacío | [ver](screenshots/chromium-desktop-vacio.jpg) | | | |
 | No encontrado | [ver](screenshots/chromium-desktop-404-destino.jpg) | | | [ver](screenshots/mobile-webkit-404-destino.jpg) |
 | Error | [ver](screenshots/chromium-desktop-error-500.jpg) | | | [ver](screenshots/mobile-webkit-error-500.jpg) |
+
+## Prueba manual en navegadores reales (sitio publicado)
+
+Fecha: 20 de noviembre de 2026 · Sitio: https://gustavoduocuc.github.io/viajes-gustavo-dominguez-pfy2202 · Equipo: macOS, ventanas normales (no privadas), con el redimensionado de ventana como modo adaptable. Versiones: las instaladas en el equipo (Safari 27.2, Firefox 160.0.1). El ancho es el aproximado de la ventana.
+
+| Navegador | Ancho aprox. | Pantallas verificadas | Resultado | Correcciones | Capturas |
+|---|---|---|---|---|---|
+| Firefox 160 escritorio | 1390 px | Destinos (8 destinos, filtros Región y País) | Correcto, con 3 columnas | Ninguna | [destinos](screenshots/firefox-desktop-destinos.jpg) |
+| Firefox 160 ventana estrecha | 990 px | Destinos | Correcto, con 2 columnas | Ninguna | [destinos](screenshots/firefox-ventana-estrecha-destinos.jpg) |
+| Firefox 160 vista móvil | 500 px | Inicio, Destinos, detalle de Cusco, Mi viaje con un vuelo elegido | Correcto: menú inferior, contador de Mi viaje (1), total 420 US$ y aviso «Falta elegir un hotel» | Ninguna | [inicio](screenshots/firefox-movil-home.jpg), [destinos](screenshots/firefox-movil-destinos.jpg), [detalle](screenshots/firefox-movil-detalle.jpg), [mi viaje](screenshots/firefox-movil-mi-viaje.jpg) |
+| Safari 27.2 escritorio | 1290 px | Destinos (filtros Región y País) | Correcto, con 3 columnas | Ninguna | [destinos](screenshots/safari-desktop-destinos.jpg) |
+| Safari 27.2 ventana estrecha | 970 px | Destinos | Correcto, con 2 columnas | Ninguna | [destinos](screenshots/safari-ventana-estrecha-destinos.jpg) |
+| Safari 27.2 vista móvil | 570 px | Destinos, detalle de Buenos Aires, Mi viaje con un hotel elegido | Correcto: 7 noches × 70 US$ = 490 US$, aviso «Falta elegir un vuelo», contador (1) | Ninguna | [destinos](screenshots/safari-movil-destinos.jpg), [detalle](screenshots/safari-movil-detalle.jpg), [mi viaje](screenshots/safari-movil-mi-viaje.jpg) |
+| Chrome o Edge | — | — | Pendiente | — | — |
+
+Observaciones:
+- Los datos de las APIs simuladas se cargan en ambos navegadores (el service worker funciona en ventana normal).
+- Sin desbordes horizontales ni cortes de texto en las capturas.
+- Diferencia solo cosmética: los selectores de Región y País usan el aspecto nativo de cada navegador (en Safari con flechas arriba/abajo, en Firefox con una flecha hacia abajo).
+- Las capturas no cubren Vuelos, Hoteles, sus filtros ni la página no encontrada en estos dos navegadores; esos flujos están verificados en Chromium y WebKit (ver arriba). Pendiente completarlos en Firefox y Safari si se quiere cobertura total.
 
 ## Sitio publicado
 

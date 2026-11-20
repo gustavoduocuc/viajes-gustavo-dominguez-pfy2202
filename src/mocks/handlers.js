@@ -2,11 +2,11 @@ import { delay, graphql, http, HttpResponse } from 'msw';
 import { destinationResponse, listDestinationsResponse } from './destinationResponses';
 import { destinationOffersResponse, flightsResponse, hotelsResponse } from './offersResponses';
 
-export const destinationsDelayMs = 600;
-export const destinationDelayMs = 400;
-export const flightsDelayMs = 500;
-export const hotelsDelayMs = 500;
-export const offersDelayMs = 700;
+const destinationsDelayMs = 600;
+const destinationDelayMs = 400;
+const flightsDelayMs = 500;
+const hotelsDelayMs = 500;
+const offersDelayMs = 700;
 
 // Fallos simulados (solo en desarrollo): ver destinationResponses.js.
 // REST — detalle: abrir /destinos/error-500. Lista: localStorage.mockFail = 'destinations'.

@@ -18,7 +18,7 @@ test('the listing shows a loading message first', () => {
   mockDestinationsApi({ '/api/destinations': neverResolves });
   renderAt('/destinos');
 
-  expect(screen.getByText('Cargando destinos…').closest('[role="status"]')).toBeInTheDocument();
+  expect(within(screen.getByRole('main')).getByRole('status')).toHaveTextContent('Cargando destinos…');
   expect(screen.getAllByRole('heading', { level: 1 })).toHaveLength(1);
 });
 
