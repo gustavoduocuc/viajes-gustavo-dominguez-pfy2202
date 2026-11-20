@@ -63,6 +63,18 @@ Carpeta [screenshots](screenshots/). Nombre: `<navegador>-<pantalla>.jpg`.
 | No encontrado | [ver](screenshots/chromium-desktop-404-destino.jpg) | | | [ver](screenshots/mobile-webkit-404-destino.jpg) |
 | Error | [ver](screenshots/chromium-desktop-error-500.jpg) | | | [ver](screenshots/mobile-webkit-error-500.jpg) |
 
+## Prueba manual en navegadores reales (sitio publicado)
+
+Sitio: https://gustavoduocuc.github.io/viajes-gustavo-dominguez-pfy2202 · Recorrido: Inicio → Destinos (filtro) → detalle → Vuelos (filtro) → Hoteles (filtro) → elegir vuelo y hotel → Mi viaje → refrescar → página no encontrada. Usar una ventana normal (en la privada de Firefox los service workers están deshabilitados).
+
+| Navegador | Versión | Viewport | Recorrido | Resultado | Correcciones | Capturas |
+|---|---|---|---|---|---|---|
+| Firefox escritorio | _pendiente_ | _pendiente_ | _pendiente_ | _pendiente_ | _pendiente_ | _pendiente_ |
+| Firefox móvil (modo adaptable) | _pendiente_ | _pendiente_ | _pendiente_ | _pendiente_ | _pendiente_ | _pendiente_ |
+| Safari escritorio | _pendiente_ | _pendiente_ | _pendiente_ | _pendiente_ | _pendiente_ | _pendiente_ |
+| Safari móvil (modo adaptable) | _pendiente_ | _pendiente_ | _pendiente_ | _pendiente_ | _pendiente_ | _pendiente_ |
+| Chrome o Edge | _pendiente_ | _pendiente_ | _pendiente_ | _pendiente_ | _pendiente_ | _pendiente_ |
+
 ## Sitio publicado
 
 Verificado el 18 de noviembre de 2026 en https://gustavoduocuc.github.io/viajes-gustavo-dominguez-pfy2202 (Chromium 153, 1280×900): menú con Inicio, Destinos y Mi viaje; 8 destinos (REST mock); elección de vuelo y hotel (GraphQL mock) con total 1085 US$ y persistencia tras refrescar; `/destinos/error-500` desactivado; sin peticiones a terceros. Las rutas profundas responden 404 de GitHub Pages pero la aplicación se muestra por el fallback. Capturas: [destinos](screenshots/publicado-destinos.jpg) y [Mi viaje](screenshots/publicado-mi-viaje.jpg).

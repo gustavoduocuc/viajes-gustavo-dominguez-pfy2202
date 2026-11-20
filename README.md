@@ -37,6 +37,12 @@ npm run build                # compilación de producción en build/
 La API mock está activa por defecto, también en producción. Para desactivarla al compilar,
 define `REACT_APP_USE_MOCKS=false` (ver `.env.example`).
 
+## Requisitos del navegador y problemas conocidos
+
+- La API mock funciona con un *service worker*, así que el navegador debe permitirlos. **No uses una ventana privada de Firefox**: ahí los service workers están deshabilitados y la app mostrará un error de conexión en lugar de datos. Tampoco funcionará si bloqueas los datos de sitios.
+- En el sitio publicado, abrir o refrescar una ruta profunda (por ejemplo `/mi-viaje`) muestra un 404 en la consola del navegador: lo emite GitHub Pages antes de servir `404.html`, que carga la aplicación. La navegación interna no tiene este efecto.
+- Si Mi viaje aparece con datos de una visita anterior, usa «Vaciar viaje» (el viaje se guarda en `localStorage`).
+
 ## Rutas
 
 | Ruta | Pantalla |
