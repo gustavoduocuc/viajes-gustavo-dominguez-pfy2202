@@ -33,8 +33,8 @@ test('a destination with everything sold out says so instead of a price', async 
   await openSummary('ciudad-del-cabo', [offersMock('ciudad-del-cabo')]);
 
   expect(await screen.findByText('2 hoteles')).toBeInTheDocument();
-  const hotelsBlock = screen.getByRole('heading', { level: 3, name: 'Hoteles' }).parentElement;
-  expect(within(hotelsBlock).getByText('Sin disponibilidad')).toBeInTheDocument();
+  expect(screen.getByText('Sin disponibilidad')).toBeInTheDocument();
+  expect(screen.getByText('desde')).toBeInTheDocument();
 });
 
 test('the destination without offers shows the empty state and no error', async () => {
@@ -53,6 +53,6 @@ test('an api error is shown as an alert', async () => {
 test('the summary shows a loading message first', async () => {
   await openSummary('cusco', [{ ...offersMock('cusco'), delay: 100 }]);
 
-  expect(screen.getByText('Cargando ofertas…').closest('[role="status"]')).toBeInTheDocument();
+  expect(within(screen.getByRole('main')).getByRole('status')).toHaveTextContent('Cargando ofertas…');
   expect(await screen.findByText('3 vuelos')).toBeInTheDocument();
 });

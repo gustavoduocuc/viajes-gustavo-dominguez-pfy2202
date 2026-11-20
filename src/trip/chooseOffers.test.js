@@ -6,11 +6,11 @@ import { renderAt } from '../testing/renderAt';
 
 async function openFlights(slug) {
   mockDestinationsApi();
-  const router = renderAt(`/destinos/${slug}/vuelos`, {
+  const view = renderAt(`/destinos/${slug}/vuelos`, {
     mocks: [flightsMock('cusco'), flightsMock('roma'), hotelsMock('cusco'), hotelsMock('roma')],
   });
   await screen.findByRole('heading', { level: 2, name: 'Vuelos' });
-  return router;
+  return view;
 }
 
 async function goTo(router, path) {
