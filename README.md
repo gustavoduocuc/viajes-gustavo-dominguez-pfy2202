@@ -1,19 +1,19 @@
 # Agencia de viajes
 
-Aplicación web de una agencia de viajes para la asignatura PFY2202 (Desarrollo Frontend II).
-Permite explorar destinos, ver sus vuelos y hoteles, elegir uno de cada y revisar el viaje con su total estimado.
-Los datos vienen de APIs mock (REST y GraphQL) que funcionan en el navegador, también en el sitio publicado.
+Agencia de viajes en línea para descubrir destinos, comparar vuelos y hoteles y armar tu próximo viaje con el costo estimado a la vista.
+
+Es una demo sin servidor propio: los destinos, vuelos, hoteles y precios son datos de ejemplo que sirven unas APIs simuladas (REST y GraphQL) dentro del propio navegador, tanto en local como en el sitio publicado.
 
 **Sitio publicado:** https://gustavoduocuc.github.io/viajes-gustavo-dominguez-pfy2202
 
 ## Funcionalidades
 
-- **Inicio** con destinos destacados.
-- **Destinos**: listado de 8 destinos con filtro, y detalle con descripción y actividades populares.
-- **Vuelos y hoteles** de cada destino, con filtros (fecha de salida, solo disponibles), indicador de disponibilidad y precios.
-- **Mi viaje**: elegir un vuelo y un hotel (las ofertas agotadas no se pueden elegir), ver las noches, el total estimado (vuelo + noches × precio por noche, para 1 pasajero y 1 habitación) y cambiar, quitar o vaciar. Si eliges una oferta de otro destino, el viaje anterior se reemplaza y se avisa.
-- El viaje se guarda en el navegador (`localStorage`, clave `viajes.trip`) y se conserva al refrescar.
-- Estados de carga, vacío, error y «no encontrado»; diseño responsivo y accesible (navegación por teclado, regiones de estado, foco gestionado).
+- **Inicio** con una selección de destinos destacados.
+- **Destinos**: 8 destinos que puedes filtrar por región y país, y una ficha de cada uno con su descripción y las actividades más populares.
+- **Vuelos y hoteles** por destino, con precios, fechas y disponibilidad. Puedes filtrar los vuelos por fecha de salida y los hoteles por disponibilidad.
+- **Mi viaje**: elige un vuelo y un hotel (lo agotado no se puede elegir) y revisa las noches y el total estimado (vuelo + noches × precio por noche, para 1 pasajero y 1 habitación). Puedes cambiar o quitar cada parte, o vaciarlo todo. Si eliges algo de otro destino, el viaje anterior se reemplaza y te avisamos.
+- Tu viaje se guarda en el navegador (`localStorage`, clave `viajes.trip`), así que sigue ahí si refrescas o vuelves más tarde.
+- Pantallas pensadas para todo tipo de situaciones: cargando, sin resultados, con error o página no encontrada. Diseño adaptable a móvil, tablet y escritorio, con navegación por teclado y lectores de pantalla.
 
 ## Stack
 
@@ -21,27 +21,27 @@ Los datos vienen de APIs mock (REST y GraphQL) que funcionan en el navegador, ta
 - Tailwind CSS 3
 - API REST mock con MSW (destinos)
 - API GraphQL mock con MSW y Apollo Client 4 (vuelos y hoteles)
-- Pruebas con Jest y Testing Library
+- Jest y Testing Library para las pruebas
 
 ## Instalación y ejecución
 
-Requiere Node 22 (ver `.nvmrc`).
+Necesitas Node 22 (ver `.nvmrc`).
 
 ```bash
 npm install
 npm start                    # desarrollo en http://localhost:3000
-npm test -- --watchAll=false # pruebas
+npm test -- --watchAll=false # ejecuta las pruebas
 npm run build                # compilación de producción en build/
 ```
 
-La API mock está activa por defecto, también en producción. Para desactivarla al compilar,
+Las APIs simuladas están activas por defecto, también en producción. Si quieres desactivarlas al compilar,
 define `REACT_APP_USE_MOCKS=false` (ver `.env.example`).
 
-## Requisitos del navegador y problemas conocidos
+## Antes de empezar: navegador y problemas conocidos
 
-- La API mock funciona con un *service worker*, así que el navegador debe permitirlos. **No uses una ventana privada de Firefox**: ahí los service workers están deshabilitados y la app mostrará un error de conexión en lugar de datos. Tampoco funcionará si bloqueas los datos de sitios.
-- En el sitio publicado, abrir o refrescar una ruta profunda (por ejemplo `/mi-viaje`) muestra un 404 en la consola del navegador: lo emite GitHub Pages antes de servir `404.html`, que carga la aplicación. La navegación interna no tiene este efecto.
-- Si Mi viaje aparece con datos de una visita anterior, usa «Vaciar viaje» (el viaje se guarda en `localStorage`).
+- Las APIs simuladas funcionan con un *service worker*, así que el navegador tiene que permitirlos. **No uses una ventana privada de Firefox**: ahí están deshabilitados y la app mostrará un error de conexión en lugar de datos. Tampoco funcionará si bloqueas los datos de los sitios.
+- En el sitio publicado, abrir o refrescar una ruta profunda (por ejemplo `/mi-viaje`) muestra un 404 en la consola del navegador: lo emite GitHub Pages antes de servir `404.html`, que es el que carga la aplicación. Navegando dentro de la app no ocurre.
+- Si Mi viaje aparece con datos de una visita anterior, usa «Vaciar viaje»: el viaje se guarda en tu navegador.
 
 ## Rutas
 
@@ -136,14 +136,14 @@ Un destino desconocido responde HTTP 200 con `{ "errors": [{ "message": "El dest
 
 ## Errores simulados
 
-En desarrollo (`npm start`) puedes provocar errores:
+Para probar cómo reacciona la app cuando algo falla, en desarrollo (`npm start`) puedes provocar errores:
 
 - Detalle de destino (REST): abre `/destinos/error-500`.
 - Lista de destinos (REST): en la consola del navegador ejecuta `localStorage.mockFail = 'destinations'` y recarga.
 - Vuelos y hoteles (GraphQL): `localStorage.mockFail = 'graphql'` y recarga una sección de un destino (por ejemplo `/destinos/cusco/vuelos`).
 
 `mockFail` admite un valor a la vez; quítalo con `localStorage.removeItem('mockFail')`.
-En el sitio publicado estos mecanismos están desactivados: `/destinos/error-500` se trata como un destino inexistente.
+En el sitio publicado estos mecanismos están desactivados: `/destinos/error-500` se trata como un destino que no existe.
 
 ## Estructura de carpetas
 
@@ -170,13 +170,13 @@ docs/           evidencia de pruebas y capturas
 | Navegador | Resultado |
 |---|---|
 | Chrome (Chromium 153) escritorio | Verificado |
-| Safari (WebKit 26.6) escritorio | Verificado |
-| Chrome en móvil (Pixel 7) | Verificado |
-| Safari en móvil (iPhone 13) | Verificado |
-| Tablet (iPad Mini, 768 px) | Verificado |
-| Firefox | Pendiente de prueba manual |
+| Safari 27.2 escritorio y ventana estrecha | Verificado en el sitio publicado |
+| Safari 27.2 en vista móvil (modo adaptable) | Verificado en el sitio publicado |
+| Firefox 160 escritorio y ventana estrecha | Verificado en el sitio publicado |
+| Firefox 160 en vista móvil (modo adaptable) | Verificado en el sitio publicado |
+| Chrome en móvil (Pixel 7), Safari en móvil (iPhone 13), tablet (iPad Mini) | Verificado |
 
-El detalle está en [docs/testing-evidence.md](docs/testing-evidence.md).
+El detalle de cada prueba está en [docs/testing-evidence.md](docs/testing-evidence.md).
 
 ## Capturas
 
@@ -186,7 +186,7 @@ El detalle está en [docs/testing-evidence.md](docs/testing-evidence.md).
 | ![Destinos en móvil](docs/screenshots/mobile-webkit-destinos.jpg) | ![Mi viaje en móvil](docs/screenshots/mobile-webkit-mi-viaje.jpg) |
 | ![Destinos publicado](docs/screenshots/publicado-destinos.jpg) | ![Mi viaje publicado](docs/screenshots/publicado-mi-viaje.jpg) |
 
-La última fila muestra el sitio publicado.
+La última fila es el sitio publicado. Hay más capturas, también de Firefox y Safari, en `docs/screenshots/`.
 
 ## Publicación
 
