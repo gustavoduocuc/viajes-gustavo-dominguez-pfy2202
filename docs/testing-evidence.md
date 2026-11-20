@@ -65,8 +65,3 @@ Están en [screenshots](screenshots/) con el formato `<navegador>-<pantalla>.jpg
 
 Del sitio publicado también hay capturas: [destinos](screenshots/publicado-destinos.jpg) y [Mi viaje](screenshots/publicado-mi-viaje.jpg).
 
-## Pendiente
-
-- Repetir a mano en Firefox y Safari lo que falta: Vuelos, Hoteles con sus filtros y la página no encontrada.
-- Una pasada rápida en Chrome o Edge.
-- Probar en un iPhone o Android real.
