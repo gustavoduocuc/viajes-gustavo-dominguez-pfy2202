@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/viajes-gustavo-dominguez-pfy2202/static/css/main.9d3f5157.css",
+    "main.js": "/viajes-gustavo-dominguez-pfy2202/static/js/main.af46af77.js",
+    "static/js/865.31719640.chunk.js": "/viajes-gustavo-dominguez-pfy2202/static/js/865.31719640.chunk.js",
+    "static/js/453.62c4e583.chunk.js": "/viajes-gustavo-dominguez-pfy2202/static/js/453.62c4e583.chunk.js",
+    "static/js/699.9d1702ef.chunk.js": "/viajes-gustavo-dominguez-pfy2202/static/js/699.9d1702ef.chunk.js",
+    "static/js/966.482b2fe5.chunk.js": "/viajes-gustavo-dominguez-pfy2202/static/js/966.482b2fe5.chunk.js",
+    "index.html": "/viajes-gustavo-dominguez-pfy2202/index.html",
+    "main.9d3f5157.css.map": "/viajes-gustavo-dominguez-pfy2202/static/css/main.9d3f5157.css.map",
+    "main.af46af77.js.map": "/viajes-gustavo-dominguez-pfy2202/static/js/main.af46af77.js.map",
+    "865.31719640.chunk.js.map": "/viajes-gustavo-dominguez-pfy2202/static/js/865.31719640.chunk.js.map",
+    "453.62c4e583.chunk.js.map": "/viajes-gustavo-dominguez-pfy2202/static/js/453.62c4e583.chunk.js.map",
+    "699.9d1702ef.chunk.js.map": "/viajes-gustavo-dominguez-pfy2202/static/js/699.9d1702ef.chunk.js.map",
+    "966.482b2fe5.chunk.js.map": "/viajes-gustavo-dominguez-pfy2202/static/js/966.482b2fe5.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.9d3f5157.css",
+    "static/js/main.af46af77.js"
+  ]
+}
